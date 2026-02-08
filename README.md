@@ -4,11 +4,11 @@
 A semantic n-gram–based anomaly detection framework that integrates syscall sequences and argument semantics to efficiently detect unseen behavioral patterns through high-recall membership filtering.
 
 
-# How to install docker on windows
+## How to install docker on windows
 
 Windows에서 Docker를 설치하는 방법:
 
-## 방법 1: Docker Desktop 설치 (권장)
+### 방법 1: Docker Desktop 설치 (권장)
 
 1. **Docker Desktop 다운로드**
    - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) 공식 웹사이트에서 다운로드
@@ -44,7 +44,7 @@ Windows에서 Docker를 설치하는 방법:
    docker run hello-world
    ```
 
-## 방법 2: WSL 2에서 직접 Docker 설치
+### 방법 2: WSL 2에서 직접 Docker 설치
 
 WSL 2 Ubuntu 환경에서 직접 Docker를 설치할 수도 있습니다:
 
@@ -55,13 +55,13 @@ sudo apt install -y docker.io
 sudo service docker start
 ```
 
-## 문제 해결
+### 문제 해결
 
 - **WSL 2 업데이트**: `wsl --update` 실행
 - **가상화 확인**: 작업 관리자 > 성능 탭에서 가상화 활성화 여부 확인
 - **Hyper-V 활성화**: Windows 기능에서 Hyper-V 활성화 (Pro 버전 이상)
 
-# Logging syscall using tracee
+## Logging syscall using tracee
 
 Tracee를 사용하여 시스템 콜(syscall)을 로깅하는 방법:
 
@@ -78,29 +78,29 @@ docker run --name tracee_1 --rm \
   -o json > /home/sylee/tracee/tracee.json
 ```
 
-## 파라미터 설명
+### 파라미터 설명
 
-### Docker 기본 옵션
+#### Docker 기본 옵션
 - `--name tracee_1`: 컨테이너 이름을 `tracee_1`로 지정합니다.
 - `--rm`: 컨테이너가 종료되면 자동으로 삭제됩니다.
 
-### 권한 및 네임스페이스 옵션
+#### 권한 및 네임스페이스 옵션
 - `--privileged`: 컨테이너에 모든 호스트 디바이스에 대한 접근 권한을 부여합니다. Tracee가 커널 레벨 이벤트를 모니터링하기 위해 필요합니다.
 - `--pid=host`: 컨테이너가 호스트의 PID 네임스페이스에 접근할 수 있도록 합니다. 모든 프로세스를 모니터링하기 위해 필요합니다.
 - `--cgroupns=host`: 컨테이너가 호스트의 cgroup 네임스페이스를 사용하도록 합니다. 리소스 제한 및 프로세스 그룹 정보에 접근하기 위해 필요합니다.
 
-### 볼륨 마운트 옵션
+#### 볼륨 마운트 옵션
 - `-v /var/run/docker.sock:/var/run/docker.sock`: Docker 소켓을 마운트하여 컨테이너 내부에서 Docker API에 접근할 수 있게 합니다. Docker 컨테이너 이벤트를 모니터링하기 위해 필요합니다.
 - `-v /boot/config-$(uname -r):/boot/config-$(uname -r)`: 현재 실행 중인 커널의 설정 파일을 마운트합니다. `$(uname -r)`는 현재 커널 버전을 반환합니다. Tracee가 커널 구성을 읽기 위해 필요합니다.
 - `-v /lib/modules/$(uname -r):/lib/modules/$(uname -r)`: 현재 커널 버전의 모듈 디렉토리를 마운트합니다. 커널 모듈에 접근하기 위해 필요합니다.
 - `-v /etc/os-release:/etc/os-release-host:ro`: OS 릴리스 정보 파일을 읽기 전용으로 마운트합니다. 호스트 OS 정보를 확인하기 위해 사용됩니다.
 
-### Tracee 옵션
+#### Tracee 옵션
 - `aquasec/tracee:latest`: 사용할 Tracee Docker 이미지를 지정합니다. Aqua Security에서 제공하는 최신 버전입니다.
 - `-o json`: 출력 형식을 JSON으로 지정합니다. 구조화된 데이터로 로그를 저장할 수 있습니다.
 - `> /home/sylee/tracee/tracee.json`: JSON 출력을 지정된 파일 경로로 리다이렉션합니다. 파일이 없으면 생성되고, 있으면 덮어씁니다.
 
-## 사용 전 준비사항
+### 사용 전 준비사항
 
 1. 출력 디렉토리 생성:
    ```bash
@@ -112,7 +112,7 @@ docker run --name tracee_1 --rm \
    chmod 755 /home/sylee/tracee
    ```
 
-## Windows에서 사용 시 주의사항
+### Windows에서 사용 시 주의사항
 
 Windows에서는 Linux 경로가 다르므로 WSL 2 환경에서 실행하거나 경로를 수정해야 합니다:
 ```bash
@@ -130,6 +130,6 @@ docker run --name tracee_1 --rm \
 ```
 
 
-# How to generate abnormal behaior syscall log
+## How to generate abnormal behaior syscall log
 
 </div>

@@ -1,0 +1,19 @@
+{
+  "BERT_MODEL_NAME": "bert-base-uncased",
+  "CLUSTERING_METHOD": "dbscan",
+  "CLUSTERING_ALPHA": 0.2,
+  "CLUSTERING_RANDOM_STATE": 42,
+  "N_GRAM_SIZE": 5,
+  "BLOOM_FILTER_ERROR_RATE": 0.001,
+  "TOP_N_CLUSTERS": 20,
+  "KEEP_PREFIXES": [
+    "processName",
+    "eventName",
+    "syscall",
+    "args",
+    "executable",
+    "returnValue"
+  ],
+  "BATCH_SIZE": 32,
+  "SHUFFLE": false
+}

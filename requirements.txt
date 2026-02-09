@@ -1,0 +1,26 @@
+# Core ML Libraries
+torch>=2.0.0
+transformers>=4.30.0
+numpy>=1.20.0
+scipy>=1.0.0
+scikit-learn>=1.6.0
+
+# Clustering
+hdbscan>=0.8.0
+
+# Environment & Configuration
+python-dotenv>=1.0.0
+
+# Bloom Filter
+pybloom-live>=3.0.0
+
+# Vector Database
+faiss-cpu>=1.7.0
+
+# Data Processing
+pandas>=1.5.0
+tqdm>=4.65.0
+
+# Utilities
+joblib>=1.0.0
+pyyaml>=6.0
